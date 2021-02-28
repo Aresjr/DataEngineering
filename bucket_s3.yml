@@ -1,0 +1,6 @@
+Description: Cria um bucket no S3
+Resources:
+    AresS3Bucket:
+        Type: AWS::S3::Bucket
+        Properties: 
+          BucketName: ares-primeiro-s3-bucket
