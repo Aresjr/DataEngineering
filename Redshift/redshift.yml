@@ -1,0 +1,51 @@
+Description: Creates a redshift cluster
+Resources:
+    RedshiftCluster:
+        Type: AWS::Redshift::Cluster
+        Properties: 
+            AllowVersionUpgrade: true
+            AutomatedSnapshotRetentionPeriod: 5
+            AvailabilityZone: us-east-1
+            ClusterIdentifier: ares-redshift-cluster
+            ClusterParameterGroupName: !Ref RedshiftParameterGroup
+            ClusterSubnetGroupName: !Ref RedshiftSubnetGroup
+            ClusterType: multi-node
+            DBName: dev
+            Encrypted: true
+            IamRoles:
+                - 
+            MasterUsername: admin
+            MasterUserPassword: Admin1234
+            NodeType: dc2.large
+            NumberOfNodes: 2
+            PubliclyAccessible: true
+            VpcSecurityGroupIds:
+                - 
+                
+    RedshiftParameterGroup:
+        Type: AWS::Redshift::ClusterParameterGroup
+        Properties: 
+            Description: Parameter group for redshift cluster
+            ParameterGroupFamily: redshift-1.0
+            Parameters: 
+                - ParameterName: max_concurrency_scaling_clusters
+                    ParameterValue: 0
+
+    RedshiftSubnetGroup:
+        Type: AWS::Redshift::ClusterSubnetGroup
+        Properties: 
+          Description: Redshift Subnet Group
+          SubnetIds: 
+            - !Ref RedshiftSubnet
+            
+    RedshiftSubnet:
+        Type: AWS::EC2::Subnet
+        Properties:
+            AvailabilityZone: us-east-1a
+            CidrBlock: 10.0.0.0/24
+            VpcId: !Ref RedshiftVPC
+            
+    RedshiftVPC:
+        Type: AWS::EC2::VPC
+        Properties:
+            CidrBlock: 10.0.0.0/16
