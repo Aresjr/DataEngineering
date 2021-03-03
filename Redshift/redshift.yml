@@ -49,3 +49,8 @@ Resources:
         Type: AWS::EC2::VPC
         Properties:
             CidrBlock: 10.0.0.0/16
+            
+    RedshiftEC2SecurityGroup:
+        Type: AWS::EC2::SecurityGroup
+        Properties:
+            GroupDescription
