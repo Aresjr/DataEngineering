@@ -1,4 +1,4 @@
-Description: Creates a S3 bucket
+Description: Cria um bucket S3
 Resources:
     AresS3Bucket:
         Type: AWS::S3::Bucket
