@@ -16,7 +16,7 @@ Resources:
       Description: Funcao para ser assumida por engenheiros de dados
       ManagedPolicyArns:
         - !Ref IamPolicyDataEngineer
-      RoleName: role-production-data-engineer
+      RoleName: role-data-engineer-producao-ares
 
   IamPolicyDataEngineer:
     Type: AWS::IAM::ManagedPolicy
